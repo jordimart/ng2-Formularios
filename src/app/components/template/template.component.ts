@@ -7,13 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
+  usuario:Object = {
+    nombre: "Jorge",
+    apellido: "Martínez",
+    correo: ""
+  }
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  guardar(){
-    console.log('Formulario posteado');
+  guardar( forma:any ){
+    console.log("ngForm", forma );
+    console.log("Valor", forma.value );
+    console.log("Usuario", this.usuario)
+
   }
 
 }
