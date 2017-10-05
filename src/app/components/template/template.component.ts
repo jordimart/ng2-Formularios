@@ -5,8 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './template.component.html',
   styles: [
     `
-    .ng-invalid.ng-touched:not(form){
-      border:1px solid red;
+    // .ng-invalid.ng-touched:not(form){
+    //   border:1px solid red;
     }
 
     `
