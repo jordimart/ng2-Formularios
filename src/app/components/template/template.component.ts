@@ -3,14 +3,21 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styles: []
+  styles: [
+    `
+    .ng-invalid.ng-touched:not(form){
+      border:1px solid red;
+    }
+
+    `
+  ]
 })
 export class TemplateComponent implements OnInit {
 
   usuario:Object = {
-    nombre: "Jorge",
-    apellido: "Martínez",
-    correo: ""
+    nombre: null,
+    apellido: null,
+    correo: null
   }
 
   constructor() { }
