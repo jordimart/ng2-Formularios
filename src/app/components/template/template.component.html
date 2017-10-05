@@ -1,6 +1,6 @@
 <h4>Formularios <small>template</small></h4>
 <hr>
-<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate class="was-validated">
 
   <div>
 
@@ -10,10 +10,10 @@
 
         <input class="form-control"
         [ngClass]="{'error-input': (nombre.errors?.required || nombre.errors?.minlength)&& nombre.touched }" type="text" placeholder="Nombre" name="nombre" [(ngModel)]="usuario.nombre" minlength="5" required #nombre="ngModel">
-        <div *ngIf="nombre.errors?.required" class="error">
+        <div *ngIf="nombre.errors?.required" class="invalid-feedback">
           Este campo es requerido.
         </div>
-        <div *ngIf="nombre.errors?.minlength" class="error">
+        <div *ngIf="nombre.errors?.minlength" class="invalid-feedback">
           Nombre mínimo de {{ nombre.errors.minlength.requiredLength }} carácteres.
         </div>
       </div>
@@ -23,7 +23,7 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input class="form-control" type="text" placeholder="Apellido" name="apellido" [(ngModel)]="usuario.apellido" required #apellido="ngModel">
+        <input class="form-control " type="text" placeholder="Apellido" name="apellido" [(ngModel)]="usuario.apellido" required #apellido="ngModel">
         <div *ngIf="apellido.errors?.required">
           Este campo es requerido.
         </div>
