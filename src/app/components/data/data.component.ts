@@ -15,7 +15,7 @@ export class DataComponent {
       apellido: "Martínez"
     },
     email: "jordimart83@gmail.com",
-    pasatiempos: ["Correr","Dormir","Caminar"]
+    pasatiempos: ["Correr", "Dormir", "Caminar"]
   }
 
   constructor() {
@@ -26,14 +26,17 @@ export class DataComponent {
           Validators.required,
           Validators.minLength(3)
         ]),
-        'apellido': new FormControl('', Validators.required)
+        'apellido': new FormControl('', [
+          Validators.required,
+          this.noHerrera
+        ])
       }),
       'email': new FormControl('', [
         Validators.required,
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
       ]),
       'pasatiempos': new FormArray([
-        new FormControl('Correr',Validators.required)
+        new FormControl('Correr', Validators.required)
       ])
     })
 
@@ -43,19 +46,29 @@ export class DataComponent {
   guardarCambios() {
     console.log(this.forma.value);
     console.log(this.forma);
-    this.forma.reset( {
-      nombrecompleto:{
-        nombre:"",
-        apellido:""
-      },
-      email:""
-    });
+    // this.forma.reset({
+    //   nombrecompleto: {
+    //     nombre: "",
+    //     apellido: ""
+    //   },
+    //   email: ""
+    // });
   }
 
-  agregarPasatiempo(){
+  agregarPasatiempo() {
     console.log('agrega');
     (<FormArray>this.forma.controls['pasatiempos']).push(
       new FormControl('', Validators.required)
     )
+  }
+
+  noHerrera(control: FormControl): { [s: string]: boolean } {
+
+    if (control.value === "herrera") {
+      return {
+        noherrera: true
+      }
+    }
+    return null;
   }
 }
