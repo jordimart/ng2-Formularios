@@ -22,9 +22,7 @@
       <label class="col-2 col-form-label">Apellido</label>
       <div class="col-8">
 
-        <input class="form-control " type="text" placeholder="Apellido" name="apellido"
-        [ngClass]="{'error-input': apellido.errors?.required  && apellido.touched }"
-        [(ngModel)]="usuario.apellido" required #apellido="ngModel">
+        <input class="form-control " type="text" placeholder="Apellido" name="apellido" [ngClass]="{'error-input': apellido.errors?.required  && apellido.touched }" [(ngModel)]="usuario.apellido" required #apellido="ngModel">
         <div *ngIf="apellido.errors?.required && apellido.touched" class="error">
           Este campo es requerido.
         </div>
@@ -37,9 +35,8 @@
     <label class="col-2 col-form-label">Correo</label>
     <div class="col-md-8">
 
-      <input class="form-control" type="email" placeholder="Correo electrónico" name="email"
-      [ngClass]="{'error-input': (email.errors?.required || email.errors?.pattern) && email.touched }"
-      [(ngModel)]="usuario.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel">
+      <input class="form-control" type="email" placeholder="Correo electrónico" name="email" [ngClass]="{'error-input': (email.errors?.required || email.errors?.pattern) && email.touched }" [(ngModel)]="usuario.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        #email="ngModel">
       <div *ngIf="email.errors?.required && email.touched">
         Este campo es requerido.
       </div>
@@ -48,9 +45,47 @@
       </div>
     </div>
   </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pais</label>
+    <div class="col-8">
+      <select [(ngModel)]="usuario.pais" class="form-control" name="pais">
+            <option value="">
+              Seleccione un pais
+            </option>
+            <option *ngFor="let pais of paises" [value]="pais.codigo">
+              {{ pais.nombre }}
+            </option>
+    </select>
+    </div>
+  </div>
 
-
-
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Sexo</label>
+    <div class="col-8">
+      <label class="custom-control custom-radio" *ngFor="let s of sexos">
+        <input [(ngModel)]="usuario.sexo"
+        name="sexo"
+        [value]="s"
+        type="radio"
+        class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">{{s}}</span>
+      </label>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Acepta</label>
+    <div class="col-8">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="usuario.acepta" name="acepta"
+        type="checkbox"
+        class="custom-control-input"
+        required />
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Acepta las condiciones</span>
+      </label>
+    </div>
+  </div>
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
@@ -59,5 +94,9 @@
       </button>
     </div>
   </div>
+
+  <pre>
+    {{ usuario | json }}
+  </pre>
 
 </form>
