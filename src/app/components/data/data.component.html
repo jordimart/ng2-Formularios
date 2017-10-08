@@ -2,18 +2,17 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()">
 
-  <div>
+  <div formGroupName="nombrecompleto">
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Nombre</label>
       <div class="col-8">
-
         <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre"
-        [ngClass]="{'error-input': !forma.get('nombre').valid && forma.controls['nombre'].touched }">
-        <div *ngIf="forma.controls['nombre'].errors?.required && forma.controls['nombre'].touched " class="error">
+        [ngClass]="{'error-input': !forma.get('nombrecompleto.nombre').valid && forma.get('nombrecompleto.nombre').touched }">
+        <div *ngIf="forma.get('nombrecompleto.nombre').errors?.required && forma.get('nombrecompleto.nombre').touched " class="error">
           Este campo es requerido.
         </div>
-        <div *ngIf="forma.controls['nombre'].errors?.minlength && forma.controls['nombre'].touched " class="error">
+        <div *ngIf="forma.get('nombrecompleto.nombre').errors?.minlength && forma.get('nombrecompleto.nombre').touched " class="error">
           Nombre mínimo de 3 carácteres.
         </div>
       </div>
