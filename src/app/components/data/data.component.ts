@@ -13,7 +13,10 @@ export class DataComponent {
   constructor() {
 
     this.forma = new FormGroup({
-      'nombre': new FormControl('', Validators.required),
+      'nombre': new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
       'apellido': new FormControl('', Validators.required),
       'email': new FormControl('', [
         Validators.required,
@@ -24,5 +27,6 @@ export class DataComponent {
 
   guardarCambios() {
     console.log(this.forma.value)
+    console.log(this.forma)
   }
 }
