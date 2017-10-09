@@ -1,6 +1,6 @@
 # Formularios
 
-## Tutorial iniciación Ionic2
+## Tutorial iniciación Angular 2
 
 
 El repositorio es parte de una sección del curso de Udemy impartido por Fernando Herrera.
